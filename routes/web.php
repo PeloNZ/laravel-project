@@ -45,6 +45,8 @@ Route::get('/tasks', function () {
 Route::get('/tasks/{id}', function ($id) {
 
     $task = Task::find($id);
+    
+    Task::incomplete()->get();
 
     return view('tasks.show', [
         'task' => $task

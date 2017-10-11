@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     //
-    public function isComplete()
+    public static function incomplete()
     {
-        return false;
+        return static::where('completed', 0)->get();
     }
 }

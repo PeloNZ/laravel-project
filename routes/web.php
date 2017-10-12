@@ -1,7 +1,5 @@
 <?php
 
-use App\Task;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,38 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/about', function () {
+Route::get('/tasks', 'TaskController@index');
 
-    $tasks = DB::table('tasks')->get();
-    $name = 'bob';
-
-
-    return view('about', [
-        'tasks' => $tasks,
-        'name' => $name
-    ]);
-});
-
-Route::get('/tasks', function () {
-
-    // Direct db interface
-//     $tasks = DB::table('tasks')->latest()->get();
-
-    // Eloquent model interface
-    $tasks = Task::all();
-    
-    return view('tasks.index', [
-        'tasks' => $tasks
-    ]);
-});
-
-Route::get('/tasks/{id}', function ($id) {
-
-    $task = Task::find($id);
-    
-    Task::incomplete()->get();
-
-    return view('tasks.show', [
-        'task' => $task
-    ]);
-});
+Route::get('/tasks/{task}', 'TaskController@show');

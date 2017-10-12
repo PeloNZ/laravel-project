@@ -13,16 +13,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="/css/album.css" rel="stylesheet">
+    <link href="/css/blog.css" rel="stylesheet">
   </head>
 
   <body>
 
 
     @include ('layouts.nav')
+    <div class="container">
     
-    @yield ('content')
-    
+          <div class="row">
+          
+                  <div class="col-sm-8 blog-main">
+                  
+                    @yield ('content')
+                
+                  </div><!-- /.blog-main -->
+    @include ('layouts.sidebar')
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
     @include ('layouts.footer')
     
     <!-- Bootstrap core JavaScript

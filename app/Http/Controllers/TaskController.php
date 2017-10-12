@@ -16,12 +16,8 @@ class TaskController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show(Task $task)
     {
-        $task = Task::find($id);
-        
-        Task::incomplete()->get();
-        
         return view('tasks.show', [
             'task' => $task
         ]);

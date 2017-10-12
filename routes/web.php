@@ -15,6 +15,10 @@ Route::get('/', 'PostController@index');
 
 Route::get('/post/{post}', 'PostController@show'); 
 
+Route::get('/post', 'PostController@create'); 
+
+Route::post('/post', 'PostController@store'); 
+
 Route::get('/tasks', 'TaskController@index');
 
 Route::get('/tasks/{task}', 'TaskController@show');

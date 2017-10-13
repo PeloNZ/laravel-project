@@ -24,3 +24,6 @@ Route::post('/post/{post}/comment', 'CommentController@store');
 Route::get('/tasks', 'TaskController@index');
 
 Route::get('/tasks/{task}', 'TaskController@show');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -14,4 +14,9 @@ class Post extends Model
     {
         $this->comments()->create(['body' => $body]);
     }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

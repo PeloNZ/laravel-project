@@ -4,6 +4,7 @@
 /storage/*.key
 /vendor
 /.idea
+/.vscode
 /.vagrant
 Homestead.json
 Homestead.yaml
@@ -11,6 +12,7 @@ npm-debug.log
 yarn-error.log
 .env
 
-# IDE project files
-.project
+/.buildpath
+/.project
+/.settings
 _ide_helper.php

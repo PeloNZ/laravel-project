@@ -36,10 +36,11 @@ class PostController extends Controller
             'body' => 'required'
         ]);
 
-        // AUTHenticated USER PUBLISHes a new POST
-        auth()->user()->publish(
-            new Post(request(['title', 'body']))
-        );
+        Post::create([
+            'title' => request('title'),
+            'body' => request('body'),
+            'user_id' => auth()->id()
+        ]);
 
         return redirect('/');
     }

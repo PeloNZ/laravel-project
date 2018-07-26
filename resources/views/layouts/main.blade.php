@@ -21,20 +21,19 @@
 
     @include ('layouts.nav')
     <div class="container">
-    
+
           <div class="row">
-          
+
                   <div class="col-sm-8 blog-main">
-                  
+
                     @yield ('content')
-                
+
                   </div><!-- /.blog-main -->
-    @include ('layouts.sidebar')
       </div><!-- /.row -->
 
     </div><!-- /.container -->
     @include ('layouts.footer')
-    
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

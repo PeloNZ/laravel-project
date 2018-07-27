@@ -10,8 +10,8 @@ class PostController extends Controller
     //
     public function index()
     {
-        $posts = Post::latest()->get();
-        
+        $posts = Post::all()->sortBy('created_at', SORT_REGULAR, true);
+
         return view('post.index', [
             'posts' => $posts
         ]);

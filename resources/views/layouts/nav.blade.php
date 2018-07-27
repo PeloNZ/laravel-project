@@ -1,7 +1,7 @@
 <div class="blog-masthead">
 	<div class="container">
 		<nav class="nav">
-			<a class="nav-link active" href="#">Home</a>
+			<a class="nav-link" href="/home">Home</a>
 			<!-- Authentication Links -->
 				@guest
 				<a class="nav-link" href="{{ route('login') }}">Login</a>
@@ -9,6 +9,7 @@
 				@else
 				<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout </a>
 					<form id="logout-form" action="{{ route('logout') }}" method="POST"	style="display: none;">{{ csrf_field() }}</form>
+				<a class="nav-link" href="{{ route('create') }}">New Post</a>
 				@endguest
 
 		</nav>

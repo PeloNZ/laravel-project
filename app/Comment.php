@@ -2,9 +2,14 @@
 
 namespace App;
 
-class Comment extends Model
+use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
+
+class Comment extends Moloquent
 {
-    //
+    protected $connection = 'mongodb';
+
+    protected $fillable = ['body'];
+
     public function post()
     {
         return $this->belongsTo(Post::class);

@@ -54,7 +54,10 @@ class PostController extends TestCase
      */
     public function testCreate()
     {
-        $response = $this->get('/post')->assertViewIs('post.create');
+        $this->actingAs($this->user)
+            ->get('/post')
+            ->assertViewIs('post.create')
+            ->assertSeeTextInOrder(['Title', 'Body', 'Publish']);
     }
 
     /**

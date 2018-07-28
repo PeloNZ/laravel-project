@@ -15,9 +15,9 @@ Route::get('/', 'PostController@index');
 
 Route::get('/post/{post}', 'PostController@show'); 
 
-Route::get('/post', 'PostController@create')->name('create');
+Route::get('/post', 'PostController@create')->name('create')->middleware('auth');
 
-Route::post('/post', 'PostController@store'); 
+Route::post('/post', 'PostController@store')->middleware('auth');
 
 Route::post('/post/{post}/comment', 'CommentController@store'); 
 

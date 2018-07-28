@@ -22,9 +22,12 @@ class PostController extends TestCase
     {
         parent::setUp();
 
+        // Enable this when debugging tests.
+//        $this->withoutExceptionHandling();
+
         $this->user = factory(User::class)->create();
 
-        $this->existingPost = factory(\App\Post::class)->create();
+        $this->existingPost = factory(\App\Post::class)->create(['user_id' => $this->user->id]);
     }
 
     /**
@@ -38,13 +41,15 @@ class PostController extends TestCase
     }
 
     /**
-     *
+     * Test the view of a selected post.
      */
     public function testShow()
     {
-        // TODO
-//        dd($this->existingPost);
-        // $response = $this->get("/post/{$this->existingPost['id']}")->assertViewIs('post.show');
+        $this->get("/post/{$this->existingPost['id']}")
+            ->assertViewIs('post.show')
+            ->assertSeeText($this->existingPost->title)
+            ->assertSeeText($this->existingPost->body)
+            ->assertSeeText($this->existingPost->user->name);
     }
 
     /**

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PostController@index'); 
+Route::get('/', 'PostController@index')->name('index');
 
 Route::get('/post/{post}', 'PostController@show');
 

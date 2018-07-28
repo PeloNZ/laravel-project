@@ -52,6 +52,17 @@ class PostController extends TestCase
             ->assertSeeText($this->existingPost->user->name);
     }
 
+    public function testDelete()
+    {
+        $postId = $this->existingPost['id'];
+
+        // As authenticate user delete the existingPost object.
+        $this->actingAs($this->user)
+            ->delete("/post/{$postId}")
+            ->assertSuccessful()
+            ->assertViewIs('post.index');
+    }
+
     /**
      * Test the Create form loads.
      *

@@ -23,7 +23,7 @@ class PostController extends TestCase
         parent::setUp();
 
         // Enable this when debugging tests.
-//        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $this->user = factory(User::class)->create();
 
@@ -52,15 +52,49 @@ class PostController extends TestCase
             ->assertSeeText($this->existingPost->user->name);
     }
 
+    /**
+     * Test updating an existing post from the edit form.
+     */
+    public function testUpdate()
+    {
+        $data = [
+            'title' => 'An Updated Title',
+            'body' => 'The body has been updated'
+        ];
+
+        $this->actingAs($this->user)
+            ->patch("/post/{$this->existingPost->id}", $data)
+            ->assertViewIs('post.show')
+            ->assertSeeTextInOrder(array_values($data));
+    }
+
+    /**
+     * Test loading existing post data into an edit form.
+     */
+    public function testEdit()
+    {
+        $this->actingAs($this->user)
+            ->get("/post/{$this->existingPost->id}/edit")
+            ->assertSuccessful()
+            ->assertViewIs('post.edit')
+            ->assertSeeTextInOrder([$this->existingPost->title, $this->existingPost->body]);
+    }
+
+    /**
+     * Test deletion of a post from the database.
+     */
     public function testDelete()
     {
         $postId = $this->existingPost['id'];
 
-        // As authenticate user delete the existingPost object.
+        // As authenticated user delete the existingPost object.
         $this->actingAs($this->user)
             ->delete("/post/{$postId}")
             ->assertSuccessful()
             ->assertViewIs('post.index');
+
+        // TODO test when not authenticated.
+        // TODO test 404 when id doesn't exist.
     }
 
     /**

@@ -15,6 +15,10 @@ Route::get('/', 'PostController@index')->name('index');
 
 Route::get('/post/{post}', 'PostController@show');
 
+Route::get('/post/{post}/edit', 'PostController@edit')->middleware('auth')->name('editPost');
+
+Route::patch('/post/{post}', 'PostController@update')->middleware('auth')->name('updatePost');
+
 Route::delete('/post/{post}', 'PostController@delete')->middleware('auth')->name('deletePost');
 
 Route::get('/post', 'PostController@create')->name('create')->middleware('auth');

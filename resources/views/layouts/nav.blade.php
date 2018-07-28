@@ -1,7 +1,7 @@
 <div class="blog-masthead">
 	<div class="container">
 		<nav class="nav">
-			<a class="nav-link" href="/home">Home</a>
+			<a class="nav-link" href="/">Home</a>
 			<!-- Authentication Links -->
 				@guest
 				<a class="nav-link" href="{{ route('login') }}">Login</a>

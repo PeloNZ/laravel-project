@@ -61,6 +61,24 @@ class PostController extends Controller
         return response()->view('errors', ['title' => '404', 'name' => 'Page not found'], 404);
     }
 
+    public function edit(Post $post)
+    {
+        return view('post.edit', [
+            'post' => $post
+        ]);
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        $post->update($request->only(['title', 'body']));
+
+        return $this->show($post);
+    }
     /**
      * Store a post.
      *

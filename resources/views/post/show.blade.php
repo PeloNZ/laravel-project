@@ -3,7 +3,10 @@
     <div class="blog-post">
         <h2 class="blog-post-title">{{ $post->title }}</h2>
         <p class="blog-post-meta">
-            {{ $post->created_at }} by {{ $post->user->name }}
+            <span id="created">Posted {{ $post->created_at->diffForHumans() }} by {{ $post->user->name }}</span>
+            @if ($post->updated_at > $post->created_at)
+                <span id="updated"> | Last updated {{ $post->updated_at->diffForHumans() }}</span>
+            @endif
         </p>
 
         {{ $post->body }}
@@ -14,7 +17,7 @@
             <ul class="list-group">
                 @foreach ($post->comments as $comment)
                     <li class="list-group-item"><strong> {{ $comment->created_at->diffForHumans() }}:
-                            &nbsp; </strong> {{ $comment->body }}</li> @endforeach
+                            </strong> {{ $comment->body }}</li> @endforeach
             </ul>
         </div>
 
@@ -26,6 +29,7 @@
                 {{ method_field('DELETE') }}
                 <button type="submit">Delete</button>
             </form>
+            <a href="{{ route('editPost', ['id' => $post->id]) }}">Edit</a>
         </div>
         @endauth
 

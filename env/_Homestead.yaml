@@ -1,0 +1,36 @@
+---
+ip: "192.168.10.10"
+memory: 2048
+cpus: 1
+provider: virtualbox
+
+authorize: ~/.ssh/id_rsa.pub
+
+mongodb: true
+
+keys:
+    - ~/.ssh/id_rsa
+
+folders:
+    - map: /home/chrisw/dev/laravel/provident
+      to: /home/vagrant/figured
+
+sites:
+    - map: homestead.test
+      to: /home/vagrant/figured/public
+
+databases:
+    - homestead
+
+# blackfire:
+#     - id: foo
+#       token: bar
+#       client-id: foo
+#       client-token: bar
+
+# ports:
+#     - send: 50000
+#       to: 5000
+#     - send: 7777
+#       to: 777
+#       protocol: udp

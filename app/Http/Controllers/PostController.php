@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -55,12 +56,19 @@ class PostController extends Controller
     public function delete(Post $post)
     {
         if ($post->delete()) {
-            return response()->view('post.index', ['success', 'Post deleted successfully']);
+            Session::flash('message', 'Post successfully deleted');
+            return redirect('/');
         }
 
-        return response()->view('errors', ['title' => '404', 'name' => 'Page not found'], 404);
+        return abort(404);
     }
 
+    /**
+     * Load an existing post in to an edit form.
+     *
+     * @param Post $post
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(Post $post)
     {
         return view('post.edit', [
@@ -68,6 +76,13 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * Update an existing post with data from the edit form.
+     *
+     * @param Request $request
+     * @param Post $post
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function update(Request $request, Post $post)
     {
         $this->validate(request(), [

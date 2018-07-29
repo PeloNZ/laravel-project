@@ -2,6 +2,10 @@
 
 <h1>Edit post</h1>
 
+<!-- validation -->
+@include ('layouts.errors')
+@include ('layouts.messages')
+
 <form method="POST" action="/post/{{ $post->id }}">
     {{ csrf_field() }}
     {{ method_field('PATCH') }}
@@ -18,9 +22,6 @@
     <div class="form-group">
         <button type="submit" class="btn btn-default">Update</button>
     </div>
-
-    <!-- validation -->
-    @include ('layouts.errors')
 
 </form>
 

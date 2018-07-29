@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\User;
@@ -88,9 +89,9 @@ class PostController extends TestCase
         $postId = $this->existingPost['id'];
 
         // As authenticated user delete the existingPost object.
-        $this->actingAs($this->user)
+        $this->followingRedirects()
+            ->actingAs($this->user)
             ->delete("/post/{$postId}")
-            ->assertSuccessful()
             ->assertViewIs('post.index');
 
         // TODO test when not authenticated.

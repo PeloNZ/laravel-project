@@ -1,5 +1,7 @@
 @extends ('layouts.main') @section ('content')
 
+@include ('layouts.messages')
+
 @if (isset($posts))
 @foreach ($posts as $post)
 <div class="blog-post">
